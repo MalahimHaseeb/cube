@@ -12,6 +12,7 @@ scene.add(cubeMesh);
 const camera = new THREE.PerspectiveCamera(36, window.innerWidth / window.innerHeight, 0.1, 30);
 camera.position.z = 5;
 
+
 const canvas = document.querySelector(".threejs");
 const renderer = new THREE.WebGLRenderer({ canvas });
 
@@ -20,9 +21,14 @@ controls.enableDamping = true
 controls.autoRotate = true
 controls.autoRotateSpeed = 5
 
-renderer.setSize(window.innerWidth, window.innerHeight);
+window.addEventListener("resize", () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+})
+
 
 const renderLoop = () => {
+  renderer.setSize(window.innerWidth, window.innerHeight);
   controls.update()
   renderer.render(scene, camera);
   window.requestAnimationFrame(renderLoop)
