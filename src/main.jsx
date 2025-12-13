@@ -9,8 +9,15 @@ const cubeMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
 const cubeMesh = new THREE.Mesh(cubeGeometry, cubeMaterial);
 scene.add(cubeMesh);
 
+cubeMesh.position.y = 1
+cubeMesh.position.x = 1
+cubeMesh.position.z = 1
+
 const camera = new THREE.PerspectiveCamera(36, window.innerWidth / window.innerHeight, 0.1, 30);
 camera.position.z = 5;
+
+const axesHelper = new THREE.AxesHelper(3);
+scene.add(axesHelper);
 
 
 const canvas = document.querySelector(".threejs");
